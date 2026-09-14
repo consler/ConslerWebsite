@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Portfolio</title>
-    <meta name="description" content="Personal portfolio website with a short bio and project list.">
+    <title>Consler's Portfolio</title>
+    <meta name="description" content="Consler's portfolio.">
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
@@ -17,34 +17,92 @@
         <p>
           A developer who cares about free and open source technology.
         </p>
+
+        <hr class="divider" aria-hidden="true">
+
+        <ul class="personal-info" aria-label="Personal details">
+          <li><span class="label">Pronouns</span>: <span class="pronouns">he/him</span></li>
+          <li><span class="label">My time</span>: <time id="consler-time" datetime="" aria-live="polite">—:—</time></li>
+        </ul>
       </section>
 
       <section class="projects" aria-labelledby="projects-title">
         <h2 id="projects-title">Projects</h2>
         <ul class="project-list">
           <li>
-            <a class="project-card" href="https://github.com/Consler/LibreLauncher" target="_blank" rel="noreferrer">
+            <a class="project-card" href="https://github.com/consler/LibreLauncher" target="_blank" rel="noreferrer">
               <span class="project-year">2026</span>
               <h3>LibreLauncher</h3>
               <p>A free and open source minecraft launcher.</p>
             </a>
           </li>
           <li>
-            <a class="project-card" href="https://github.com/Consler/Cat-The-Builder-App" target="_blank" rel="noreferrer">
+            <a class="project-card" href="https://github.com/consler/Cat-The-Builder-App" target="_blank" rel="noreferrer">
               <span class="project-year">2025</span>
               <h3>Cat The Builder</h3>
               <p>A free and open source tool to convert .catrobat to .apk files.</p>
             </a>
           </li>
           <li>
-            <a class="project-card" href="https://github.com/Consler/LibreLauncherLib" target="_blank" rel="noreferrer">
+            <a class="project-card" href="https://github.com/consler/LibreLauncherLib" target="_blank" rel="noreferrer">
               <span class="project-year">2026</span>
               <h3>LibreLauncherLib</h3>
               <p>An easy-to-use Java library to build powerful minecraft launchers.</p>
             </a>
           </li>
+          <li>
+            <a class="project-card" href="https://github.com/consler/Karma" target="_blank" rel="noreferrer">
+              <span class="project-year">2024</span>
+              <h3>Karma</h3>
+              <p>A minecraft plugin that adds karma to the game.</p>
+            </a>
+          </li>
         </ul>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:consler2000@gmail.com">consler2000@gmail.com</a></p>
+        <p>Discord: <span class="discord-handle">@consler</span></p>
+      </div>
+    </footer>
+
+    <div id="scroll-progress" aria-hidden="true"><div class="bar"></div></div>
+
+    <script>
+      (function()
+      {
+        const el = document.getElementById('consler-time');
+        if (el) {
+          function pad(n) { return n.toString().padStart(2, '0'); }
+          function update()
+          {
+            const now = new Date();
+            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+            const target = new Date(utc + (2 * 60 * 60 * 1000));
+            const hours = pad(target.getHours());
+            const minutes = pad(target.getMinutes());
+            el.textContent = hours + ':' + minutes;
+            el.setAttribute('datetime', target.toISOString());
+          }
+          update();
+          setInterval(update, 30000);
+        }
+
+        const progress = document.querySelector('#scroll-progress .bar');
+        function updateProgress() {
+          const doc = document.documentElement;
+          const scrollTop = window.pageYOffset || doc.scrollTop || 0;
+          const scrollHeight = doc.scrollHeight - doc.clientHeight;
+          const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+          if (progress) progress.style.width = pct + '%';
+        }
+        updateProgress();
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        window.addEventListener('resize', updateProgress);
+      })();
+    </script>
   </body>
 </html>
