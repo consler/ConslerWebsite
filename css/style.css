@@ -1,21 +1,47 @@
 :root {
   --bg: #0b0d10;
+  --surface: rgba(18, 23, 29, 0.9);
   --text: #edf3f8;
   --muted: #aab7c4;
   --accent: #7dd3fc;
   --border: rgba(255, 255, 255, 0.08);
+  --accent-border: rgba(125, 211, 252, 0.6);
 }
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
 
 body {
-  margin: 0;
   min-height: 100vh;
-  background: radial-gradient(circle at top, rgba(125,211,252,0.12), transparent 30%), var(--bg);
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(125, 211, 252, 0.12), transparent 30%),
+    var(--bg);
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.6;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+a {
+  color: var(--accent);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 .container {
@@ -24,7 +50,9 @@ body {
   padding: 5rem 0 4rem;
 }
 
-.hero { margin-bottom: 2rem; }
+.hero {
+  margin-bottom: 2.75rem;
+}
 
 h1 {
   margin: 0;
@@ -33,62 +61,219 @@ h1 {
   letter-spacing: -0.05em;
 }
 
-.about { margin-bottom: 3rem; }
+.about {
+  margin-bottom: 2.5rem;
+}
+
+.about h2,
+.hobbies h2,
+.projects h2,
+.site-footer h2 {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .about p {
-  margin: 0;
   max-width: 60ch;
+  margin: 0;
   color: var(--muted);
   font-size: 1.08rem;
 }
 
-.projects h2 {
-  margin-bottom: 1.25rem;
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.1rem;
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  background: rgba(125, 211, 252, 0.1);
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  border-color: var(--accent);
+  background: rgba(125, 211, 252, 0.2);
+  transform: translateY(-2px);
+}
+
+.error-page {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.error-page h1 {
+  margin-bottom: 0.75rem;
+}
+
+.error-page p {
+  margin: 0;
   color: var(--muted);
 }
 
-.project-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+.hobbies {
+  margin-bottom: 2rem;
+}
+
+.personal-info {
+  display: grid;
+  max-width: 60ch;
+  gap: 0.45rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.personal-info li {
+  color: var(--muted);
+}
+
+.personal-info .label {
+  margin-right: 0.35rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.description {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.divider {
+  height: 1px;
+  margin: 1.5rem 0;
+  border: 0;
+  border-radius: 1px;
+  background: var(--border);
+}
+
+.projects h2 {
+  margin-bottom: 1.25rem;
+}
+
+.project-list {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
 .project-card {
   display: block;
-  background: rgba(18, 23, 29, 0.9);
+  padding: 1.25rem 1.25rem 1.1rem;
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 1.25rem 1.25rem 1.1rem;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  background: var(--surface);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
   color: var(--text);
   text-decoration: none;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
+
 .project-card:hover,
-.project-card:focus-visible { transform: translateY(-2px); border-color: rgba(125,211,252,0.6); box-shadow: 0 16px 32px rgba(125,211,252,0.12); }
+.project-card:focus-visible {
+  border-color: var(--accent-border);
+  box-shadow: 0 16px 32px rgba(125, 211, 252, 0.12);
+  transform: translateY(-2px);
+}
 
-.project-year { display:inline-block; margin-bottom:0.5rem; color:var(--accent); font-size:0.74rem; letter-spacing:0.1em; text-transform:uppercase; }
-.project-card h3 { margin:0 0 0.4rem; font-size:1.35rem; }
-.project-card p { margin:0; color:var(--muted); }
+.project-year {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
 
-@media (max-width:600px){ .container{ padding-top:4rem } .project-card{ padding:1rem } }
+.project-card h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.35rem;
+}
 
-.personal-info { list-style:none; padding:0; margin:0.75rem 0 0; display:grid; gap:0.45rem; max-width:60ch }
-.personal-info li { color:var(--muted) }
-.personal-info .label { color:var(--accent); font-weight:700; margin-right:0.35rem; text-transform:uppercase; font-size:0.78rem; letter-spacing:0.08em }
-.pronouns { color:var(--text); font-weight:600 }
+.project-card p {
+  margin: 0;
+  color: var(--muted);
+}
 
-.divider { border:none; height:1px; background:rgba(255,255,255,0.04); margin:1rem 0; border-radius:1px }
+.site-footer {
+  margin-top: 3rem;
+  padding: 1.5rem 0 2rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
 
-.site-footer { border-top:1px solid var(--border); margin-top:3rem; padding:1.5rem 0 2rem; color:var(--muted) }
-.site-footer .container{ padding:0 }
-.site-footer h2{ margin:0 0 0.5rem; font-size:0.9rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted) }
-.site-footer p{ margin:0.35rem 0; color:var(--muted) }
-.site-footer a{ color:var(--accent); text-decoration:none } .site-footer a:hover{ text-decoration:underline }
-.discord-handle{ color:var(--text); font-weight:600 }
+.site-footer .container {
+  padding: 0;
+}
 
-#consler-time{ color:var(--text); font-weight:700 }
+.site-footer h2 {
+  margin-bottom: 0.5rem;
+}
 
-/* hide native scrollbars, keep scrolling */
-html{ scrollbar-width:none } body{ -ms-overflow-style:none } body::-webkit-scrollbar{ width:0; height:0 }
+.site-footer p {
+  margin: 0.35rem 0;
+}
 
-#scroll-progress{ position:fixed; top:0; left:0; right:0; height:3px; pointer-events:none; z-index:9999 }
-#scroll-progress .bar{ width:0; height:100%; background:linear-gradient(90deg,var(--accent), rgba(125,211,252,0.7)); box-shadow:0 0 12px rgba(125,211,252,0.08); transition:width 120ms linear }
+.site-footer a {
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.discord-handle,
+#consler-time {
+  color: var(--text);
+  font-weight: 700;
+}
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9999;
+  height: 3px;
+  pointer-events: none;
+}
+
+#scroll-progress .bar {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), rgba(125, 211, 252, 0.7));
+  box-shadow: 0 0 12px rgba(125, 211, 252, 0.08);
+  transition: width 120ms linear;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding-top: 4rem;
+  }
+
+  .project-card {
+    padding: 1rem;
+  }
+}
