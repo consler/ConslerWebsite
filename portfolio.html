@@ -49,5 +49,24 @@
         </ul>
       </section>
     </main>
+
+    <div id="scroll-progress" aria-hidden="true"><div class="bar"></div></div>
+
+    <script>
+      (function()
+      {
+        const progress = document.querySelector('#scroll-progress .bar');
+        function updateProgress()
+        {
+          const doc = document.documentElement;
+          const scrollHeight = doc.scrollHeight - doc.clientHeight;
+          const pct = scrollHeight > 0 ? (window.scrollY / scrollHeight) * 100 : 0;
+          progress.style.width = pct + '%';
+        }
+        updateProgress();
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        window.addEventListener('resize', updateProgress);
+      })();
+    </script>
   </body>
 </html>
